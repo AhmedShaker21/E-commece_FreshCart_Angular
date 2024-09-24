@@ -1,0 +1,47 @@
+<div class="w-3/4 mx-auto">
+  <form (ngSubmit)="checkOutSubmit()" [formGroup]="checkOutForm">
+    <div class="mt-5">
+      <label for="details">Details:</label>
+      <div class="flex py-2">
+        <span
+          class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+          <i class="fa-solid fa-circle-info text-green-400"></i>
+        </span>
+        <input type="text" id="details"
+          class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+          formControlName="details">
+      </div>
+
+    </div>
+    <div class="mt-5">
+
+      <label for="phone">Phone:</label>
+      <div class="flex py-2">
+        <span
+          class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+          <i class="fa-solid fa-phone text-green-400"></i>
+        </span>
+        <input type="tel" id="phone"
+          class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+          formControlName="phone">
+      </div>
+    </div>
+    <div class="mt-5">
+
+      <label for="city">City:</label>
+      <div class="flex py-2">
+        <span
+          class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+          <i class="fa-solid fa-city text-green-400"></i>
+        </span>
+        <input type="text" id="city"
+          class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+          formControlName="city">
+      </div>
+    </div>
+    <div class="mt-5">
+      <button [disabled]="checkOutForm.invalid" class="btn-main">Submit</button>
+    </div>
+  </form>
+</div>
+

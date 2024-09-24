@@ -1,0 +1,45 @@
+@if(myCart.numOfCartItems == 0){
+<h2 class="text-center py-10 font-bold">No Items in Cart</h2>
+<div class="text-center">
+  <img src="./assets/empty.jpg" class="w-80 m-auto" alt="">
+</div>
+}@else {
+<div class="w-3/4 mx-auto pt-16">
+  <h2 class="text-main py-1 font-bold">Shop Cart</h2>
+  <div class="flex justify-between text-center align-baseline">
+    <h5 class="border p-2 text-center w-40 my-6 border-lime-500">Total Cart Price : <span
+        class="text-main font-bold">{{myCart?.data?.totalCartPrice}}</span></h5>
+    <div>
+      <button class="btn-main m-7" [routerLink]="['/CheckOut' , myCart?.cartId]">CheckOut
+        <i class="fas fa-shopping-cart fa-beat-fade"
+          style="--fa-beat-fade-opacity: 0.1; --fa-beat-fade-scale: 1.25;"></i>
+      </button>
+      <button class="btn-red m-7" (click) = "clearCart()">Clear Cart
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+  </div>
+  @for(product of myCart?.data?.products ; track $index){
+  <div class="flex flex-wrap items-center p-5  bg-zinc-100 rounded-lg">
+    <div class="xl:w-2/12 md:w-4/12 sm:w-4/12">
+      <img [src]="product?.product?.imageCover" [alt]="product?.product?.title" class="w-full rounded-lg">
+    </div>
+    <div class="xl:w-7/12 md:w-6/12 sm:w-4/12 px-3 flex flex-col justify-between gap-3">
+      <h2>{{product?.product?.title}}</h2>
+      <span class="text-main">Price : {{product?.price}}</span>
+      <div class="cursor-pointer" (click)="removeItem(product.product._id)">
+        <i class="fa-solid fa-trash text-main"></i>
+        <span>Remove</span>
+      </div>
+    </div>
+    <div class="xl:w-3/12 md:w-2/12 sm:w-4/12 flex gap-2 items-center">
+      <i class="fa-solid fa-plus border p-2 border-green-600 rounded-lg cursor-pointer"
+        (click)="updateQuentity(product.product._id,product.count+1)"></i>
+      <span>{{product.count}}</span>
+      <i class="fa-solid fa-minus border p-2 border-green-600 rounded-lg cursor-pointer"
+        (click)="updateQuentity(product.product._id,product.count-1)"></i>
+    </div>
+  </div>
+  }
+</div>
+}

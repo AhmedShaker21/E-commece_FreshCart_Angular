@@ -1,0 +1,90 @@
+<section class="w-10/12 mx-auto flex flex-col lg:flex-row py-10">
+    <div class="w-full lg:w-3/4 main-img">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide><img src="./assets/pic4.jpg" class="w-full" alt="">
+        </ng-template>
+        <ng-template carouselSlide><img src="./assets/pic2.jpg" class="w-full" alt="">
+        </ng-template>
+        <ng-template carouselSlide><img src="./assets/pic3.jpg" class="w-full" alt="">
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+    <div class="w-full lg:w-1/4 sec-img flex flex-col mt-4 lg:mt-0">
+      <img src="./assets/pic1.jpg" class="w-full" alt="">
+
+      <img src="./assets/pic3.jpg" class="w-full" alt="">
+
+    </div>
+</section>
+<section>
+    <div class="font-bold m-12  w-52 p-3 border-r-lime-600 border">
+      <h2>Popular Categories : </h2>
+    </div>
+    <div class="w-3/4 mx-auto">
+      <owl-carousel-o [options]="customOptionsCat">
+
+        @for (item of categoryData; track item._id) {
+        <ng-template carouselSlide>
+          <div>
+            <img [src]="item.image"  [alt]="item.name" class="w-full h-64" [title]="item.name">
+            <h3 class="h6 text-main">{{item.name}}</h3>
+          </div>
+        </ng-template>
+
+        }
+      </owl-carousel-o>
+
+    </div>
+</section>
+
+<section>
+      <div class="font-bold m-12 border w-44 p-3 border-r-lime-600 ">
+        <h2>Popular Products : </h2>
+      </div>
+
+  <div class="w-10/12 mx-auto flex flex-wrap">
+    @for(product of productList ; track $index)
+    {
+    <div class="sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2" [title]='product.title'>
+      <div class="product p-3 flex flex-col justify-between">
+        <div class="mb-4 flex flex-col justify-between">
+
+
+
+                <div class="addWish-btn main-color text-2xl cursor-pointer" *ngIf="!myWishListItems.includes(product._id)"
+                  (click)="addWish(product._id)">
+                  <i class="fa-regular fa-heart"></i>
+                </div>
+                <div class="removeWish-btn text-main text-2xl cursor-pointer" *ngIf="myWishListItems.includes(product._id)"
+                  (click)="removeWish(product._id)">
+                  <i class="fa-solid fa-heart"></i>
+                </div>
+<div [routerLink]="['/productDetails' , product._id]" class="mb-4">
+          <img [src]="product.imageCover" class="w-full" alt="">
+          <h3 class="text-main">{{product.category.name}}</h3>
+          <h4>{{product.title.split(' ',3).join(' ')}}</h4>
+          <div class="flex justify-between items-center gap-1">
+            <span class="text-sm/[17px]">{{product.price}} EGP</span>
+
+            <span class="text-base">
+              @for(num of [1,2,3,4,5].slice(0,product.ratingsAverage) ; track $index){
+              <i class="fa-solid fa-star rating-color"></i>
+              }
+              @if(product.ratingsAverage % 1 !=0){
+              <i class="fa-solid fa-star-half-alt rating-color"></i>
+              }
+              {{product.ratingsAverage}}
+            </span>
+          </div>
+        </div>
+        </div>
+        <button class="btn-main w-full" (click)="AddProduct(product._id)">Add Product
+          @if(isLoading){
+          <i class="fa fa-spin fa-spinner"></i>
+          }
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+</section>

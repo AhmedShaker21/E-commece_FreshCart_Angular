@@ -1,0 +1,28 @@
+ .wishlist-item {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   padding: 1rem;
+   justify-content: space-between;
+   background-color: #8d8a8a;
+   border-radius: 0.5rem;
+   margin-bottom: 1rem;
+ }
+
+ .wishlist-item img {
+   width: 100%;
+   border-radius: 0.5rem;
+ }
+
+
+
+ .wishlist-item-button {
+   width: 9rem;
+ }
+
+ @media (min-width: 768px) {
+
+   .wishlist-item img {
+     width: auto;
+   }
+ }

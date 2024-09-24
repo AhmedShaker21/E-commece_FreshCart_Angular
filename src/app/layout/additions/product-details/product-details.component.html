@@ -1,0 +1,34 @@
+<div class="w-10/12 mx-auto flex flex-col lg:flex-row items-center">
+<div class="w-full md:w-1/4 p-4">
+
+      <owl-carousel-o [options]="customOptions">
+        @for(img of myProduct.images ; track $index){
+
+          <ng-container>
+            <ng-template carouselSlide>
+              <img [src]="img" [alt]="myProduct.title" [title]="myProduct.title">
+            </ng-template>
+          </ng-container>
+        }
+
+
+      </owl-carousel-o>
+
+</div>
+<div class="w-full md:w-3/4 p-4">
+<div>
+  <div>
+    <h2 class="font-bold text-main">{{myProduct.title}}</h2>
+    <p>{{myProduct.description}}</p>
+    <h3>{{myProduct.category.name}}</h3>
+  </div>
+  <div class="flex justify-between mt-7">
+    <span>{{myProduct.price | currency : "EGP "}} </span>
+    <span>{{myProduct.ratingsAverage}}
+      <i class="fa-solid fa-star rating-color"></i>
+    </span>
+  </div>
+  <button class="btn-main w-full mt-2" (click)="AddProduct(myProduct._id)">Add to Product</button>
+</div>
+</div>
+</div>
